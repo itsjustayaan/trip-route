@@ -64,7 +64,7 @@ input[type="text"]:focus {
 
 #innerContainer {
   overflow-y: auto;
-  max-height: 25vh;
+  max-height: 30vh;
 }
 
 #innerContainer::-webkit-scrollbar {

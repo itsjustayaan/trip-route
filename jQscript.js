@@ -2,7 +2,7 @@ $("document").ready(function () {
     let n=1;
     $("#addStops").on("click", function () {
       var inputId = "inputdiv_" + n; 
-      var input = $('<div class="inputTag" id="'+inputId+'"><input type="text" placeholder="Enter value"><span class="material-icons remove-icon">remove</span></div>');
+      var input = $('<div class="inputTag" id="'+inputId+'"><input type="text" placeholder="In Between"><span class="material-icons remove-icon">remove</span></div>');
       $("#innerContainer").append(input);
       n++;
     });
