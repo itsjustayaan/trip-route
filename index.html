@@ -3,25 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="favicon.png?v=2"/>
+    <link rel="icon" type="image/png" href="favicon.png?v=2" />
     <title>Trip-Route</title>
     <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="sidepanel">
-      <input type="text" />
-      <input type="text" />
-      <div>
-        <button class="btn">Add Stops</button>
+      <div class="inputContainer">
+        <input type="text" placeholder="Start Destination" />
+        <div id="innerContainer" class="inputContainer"></div>
+        <input type="text" placeholder="End Destination" />
+      </div>
+      <div class="buttonContainer">
+        <button id="addStops" class="btn">Add Stops</button>
         <button class="btn">Make Route</button>
       </div>
     </div>
     <div id="map"></div>
-    <script src="index.js"></script>
+    <script src="jQuery.js"></script>
     <script
       async
       defer
       src="https://maps.googleapis.com/maps/api/js?libraries=geometry&callback=initMap"
     ></script>
+    <script src="index.js"></script>
+    <script src="jQscript.js"></script>
   </body>
 </html>

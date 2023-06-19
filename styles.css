@@ -47,10 +47,56 @@ input[type="text"]:focus {
   color: #000000;
   padding: 10px;
   text-align: center;
-  margin: 25rem 0.5rem 1rem;
+  /* margin: 25rem 0.5rem 1rem; */
 
   font-family: "DM Sans";
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
 }
+
+.inputContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#innerContainer {
+  overflow-y: auto;
+  max-height: 20vh;
+}
+
+#innerContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.buttonContainer{
+  position: absolute;
+  width: 100%;
+  display: flex;  
+  justify-content: space-evenly;
+  bottom: 0;
+  margin-bottom: 1rem;
+}
+
+.inputTag{
+position: relative;
+width: 100%;
+max-width: 19rem;
+}
+
+
+.inputTag input {
+  padding-right: 30px; /* Add space for the remove icon */
+}
+
+.inputTag .remove-icon {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #9ba4b5; /* Set desired color for the remove icon */
+}
+
