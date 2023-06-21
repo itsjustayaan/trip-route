@@ -6,3 +6,13 @@ function initMap() {
   });
 }
 window.initMap = initMap;
+$(document).ready(function () {
+  $("#makeRoute").on("click", function () {
+    let start = $("#start").val();
+    let end = $("#end").val();
+    let stops = [];
+    $(".inputTag").each(function () {
+      stops.push($(this).children("input").val());
+    });
+  });
+});
