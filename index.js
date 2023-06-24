@@ -14,7 +14,7 @@ function initMap() {
     let marker = new google.maps.Marker({
       position: mapsMouseEvent.latLng,
       map: map,
-      draggable: true,
+      // draggable: true,
     });
     const url = `https://nominatim.openstreetmap.org/reverse?lat=${marker.position.lat()}&lon=${marker.position.lng()}&format=json`;
 
@@ -78,7 +78,7 @@ $(document).ready(function () {
           let marker = new google.maps.Marker({
             position: latLang,
             map: map,
-            draggable: true,
+            // draggable: true,
           });
 
           addresses.latLang.push(latLang);
