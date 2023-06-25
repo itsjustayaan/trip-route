@@ -3,6 +3,7 @@ let markers = [];
 let Paths = [];
 let selectedLocation = [];
 let isPresent = false;
+let modeTravel = "car";
 
 function initMap() {
   let location = { lat: 26.924150519735488, lng: 80.95402479171754 };
@@ -89,10 +90,10 @@ $(document).ready(function () {
     }
     const data = await drawRoute(addresses.plotPoints);
     let plotlines = [];
-    data.paths[0].points.coordinates.forEach((coordinate) => {
+    await data.paths[0].points.coordinates.forEach((coordinate) => {
       plotlines.push({ lat: coordinate[1], lng: coordinate[0] });
     });
-    const makePath = new google.maps.Polyline({
+    const makePath = await new google.maps.Polyline({
       path: plotlines,
       geodesic: true,
       strokeColor: "#E57C23",
@@ -101,7 +102,15 @@ $(document).ready(function () {
     });
     makePath.setMap(map);
     Paths.push(makePath);
+    await $("#" + modeTravel).css("color", "black");
+    setContent(modeTravel, data.paths[0].distance, data.paths[0].time);
   });
+});
+
+$(".vehicle").on("click", function () {
+  $(".vehicle").css("color", "#67676c");
+  modeTravel = $(this).attr("id");
+  $("#" + modeTravel).css("color", "black");
 });
 
 async function drawRoute(latLang) {
@@ -116,14 +125,40 @@ async function drawRoute(latLang) {
     },
     body: JSON.stringify({
       points: latLang,
-      vehicle: "bike",
+      vehicle: modeTravel,
       locale: "en",
       instructions: true,
       calc_points: true,
       points_encoded: false,
     }),
   });
-
   const data = await resp.json();
   return data;
+}
+
+async function setContent(by, dist, time) {
+  by = by.charAt(0).toUpperCase() + by.slice(1);
+  time = await formatTime(time);
+  if (dist / 1000 < 1) dist = dist.toFixed(2) + " m";
+  else dist = (dist / 1000).toFixed(2) + " km";
+  $("#by").text("By: " + by);
+  $("#dist").text("Distance: " + dist);
+  $("#time").text("ETA: " + time);
+}
+
+async function formatTime(milliseconds) {
+  const seconds = Math.floor((milliseconds / 1000) % 60);
+  const minutes = Math.floor((milliseconds / 1000 / 60) % 60);
+  const hours = Math.floor((milliseconds / 1000 / 60 / 60) % 24);
+  const days = Math.floor(milliseconds / 1000 / 60 / 60 / 24);
+
+  if (days === 0 && hours === 0 && minutes === 0) {
+    return `${seconds} sec`;
+  } else if (days === 0 && hours === 0) {
+    return `${minutes} min ${seconds} sec`;
+  } else if (days === 0) {
+    return `${hours} hr ${minutes} min ${seconds} sec`;
+  } else {
+    return `${days} days ${hours} hr ${minutes} min ${seconds} sec`;
+  }
 }

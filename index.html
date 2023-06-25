@@ -14,9 +14,19 @@
   <body>
     <div class="sidepanel">
       <div class="inputContainer">
-        <input  id="start" type="text" placeholder="Where From" />
+        <input id="start" type="text" placeholder="Where From" />
         <div id="innerContainer" class="inputContainer"></div>
         <input id="end" type="text" placeholder="Where To" />
+      </div>
+      <div class="iconContainer">
+        <span class="material-icons vehicle" id="foot">directions_walk</span>
+        <span class="material-icons vehicle" id="bike"> directions_bike </span>
+        <span class="material-icons vehicle" id="car"> directions_car </span>
+      </div>
+      <div class="textContainer">
+        <p id="by"></p>
+        <p id="dist"></p>
+        <p id="time"></p>
       </div>
       <div class="buttonContainer">
         <button id="addStops" class="btn">Add Stops</button>
