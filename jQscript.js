@@ -1,6 +1,7 @@
 let n = 2;
 $("document").ready(function () {
   $("#addStops").on("click", function () {
+
     var inputId = "inputdiv_" + n;
     var input = $(
       '<div class="inputTag" id="' +
@@ -12,12 +13,14 @@ $("document").ready(function () {
   });
   $("#innerContainer").on("click", ".remove-icon", function () {
     var inputTagId = $(this).parent(".inputTag").attr("id");
-    var index = inputTagId.indexOf('_');
+    var index = inputTagId.indexOf("_");
     var inputNumber = inputTagId.substring(index + 1);
-    if(markers[inputNumber]!=undefined){
+
+    if (markers[inputNumber] != undefined) {
       markers[inputNumber].setMap(null);
-      markers.splice(inputNumber,1);
+      markers.splice(inputNumber, 1);
     }
+
     $("#" + inputTagId).remove();
   });
 });

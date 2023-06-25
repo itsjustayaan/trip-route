@@ -55,6 +55,12 @@ input[type="text"]:focus {
   font-size: 15px;
 }
 
+.btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+
 .inputContainer {
   width: 100%;
   display: flex;

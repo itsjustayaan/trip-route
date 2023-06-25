@@ -103,7 +103,12 @@ $(document).ready(function () {
     makePath.setMap(map);
     Paths.push(makePath);
     await $("#" + modeTravel).css("color", "black");
-    setContent(modeTravel, data.paths[0].distance, data.paths[0].time);
+    map.setCenter({
+      lat: addresses.latLang[0].lat,
+      lng: addresses.latLang[0].lng,
+    });
+    await setContent(modeTravel, data.paths[0].distance, data.paths[0].time);
+    map.setZoom(8);
   });
 });
 
