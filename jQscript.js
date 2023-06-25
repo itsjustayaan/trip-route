@@ -14,10 +14,14 @@ $("document").ready(function () {
     var inputTagId = $(this).parent(".inputTag").attr("id");
     var index = inputTagId.indexOf('_');
     var inputNumber = inputTagId.substring(index + 1);
+    if(markers[inputNumber]!=undefined){
+      markers[inputNumber].setMap(null);
+      markers.splice(inputNumber,1);
+    }
     $("#" + inputTagId).remove();
   });
 });
-function assignAddress(address) {
+async function assignAddress(address) {
   var inputId = "inputdiv_" + n;
   var input = $(
     '<div class="inputTag" id="' +
@@ -27,5 +31,5 @@ function assignAddress(address) {
       '"><span class="material-icons remove-icon">remove</span></div>'
   );
   $("#innerContainer").append(input);
-  n++;
+  return n++;
 }

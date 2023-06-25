@@ -14,24 +14,18 @@ function initMap() {
     let marker = new google.maps.Marker({
       position: mapsMouseEvent.latLng,
       map: map,
-      // draggable: true,
     });
     const url = `https://nominatim.openstreetmap.org/reverse?lat=${marker.position.lat()}&lon=${marker.position.lng()}&format=json`;
-
+    let mark;
     try {
       const response = await fetch(url);
       const data = await response.json();
       const address = data.display_name;
-      assignAddress(address);
+      mark = await assignAddress(address);
     } catch (error) {
       console.error(error);
     }
-    markers.push(marker);
-
-    // marker.addListener("dragend", (markerDragEvent) => {
-    //   let index = markers.indexOf(marker);
-    //   console.log(index);
-    // });
+    markers[mark] = marker;
   });
 }
 window.initMap = initMap;
@@ -78,17 +72,11 @@ $(document).ready(function () {
           let marker = new google.maps.Marker({
             position: latLang,
             map: map,
-            // draggable: true,
           });
 
           addresses.latLang.push(latLang);
           addresses.plotPoints.push([latLang.lng, latLang.lat]);
           markers.push(marker);
-
-          // marker.addListener("dragend", (markerDragEvent) => {
-          //   let index = markers.indexOf(marker);
-          //   console.log(index);
-          // });
         } else {
           console.log(`No results found for the address: ${address}`);
         }
